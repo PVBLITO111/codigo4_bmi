@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatelessWidget {
+class CustomCard extends StatefulWidget {
   final Widget child;
-  const CustomCard({super.key, required this.child});
+  final Color backgroundColor;
+  final Color borderColor;
 
+  const CustomCard(
+      {super.key,
+      required this.child,
+      this.backgroundColor = Colors.white,
+      this.borderColor = Colors.grey});
+
+  @override
+  State<CustomCard> createState() => _CustomCardState();
+}
+
+class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -12,12 +24,12 @@ class CustomCard extends StatelessWidget {
         height: 140,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.grey,
+            color: widget.borderColor,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(4)),
-          color: Colors.white,
+          color: widget.backgroundColor,
         ),
-        child: child,
+        child: widget.child,
       ),
     );
   }
