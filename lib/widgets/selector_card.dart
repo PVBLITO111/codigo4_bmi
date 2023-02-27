@@ -1,4 +1,4 @@
-import 'package:codigo4_bmi/widgets/custom_card.dart';
+import 'package:codigo4_bmi/widgets/image_card.dart';
 import 'package:flutter/material.dart';
 
 class SelectorCard extends StatefulWidget {
@@ -14,36 +14,27 @@ class _SelectorCardState extends State<SelectorCard> {
   Widget build(BuildContext context) {
     return Row(children: [
       Expanded(
-        child: CustomCard(
-          backgroundColor: _isSelected ? Colors.blue : Colors.white,
-          borderColor: _isSelected ? Colors.black : Colors.grey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('images/male.png'),
-              Text('Hombre',
-                  style: _isSelected
-                      ? const TextStyle(fontWeight: FontWeight.bold)
-                      : const TextStyle(fontWeight: FontWeight.normal)),
-            ],
-          ),
+        child: ImageCard(
+          isSelected: _isSelected,
+          image: 'images/male.png',
+          text: 'Hombre',
+          onPressed: () {
+            setState(() {
+              _isSelected = true;
+            });
+          },
         ),
       ),
       Expanded(
-        child: CustomCard(
-          backgroundColor: !_isSelected ? Colors.blue : Colors.white,
-          borderColor: !_isSelected ? Colors.black : Colors.grey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset('images/female.png'),
-              Text('Mujer',
-                  style: !_isSelected
-                      ? const TextStyle(fontWeight: FontWeight.bold)
-                      : const TextStyle(
-                          fontWeight: FontWeight.normal, color: Colors.grey)),
-            ],
-          ),
+        child: ImageCard(
+          isSelected: !_isSelected,
+          image: 'images/female.png',
+          text: 'Mujer',
+          onPressed: () {
+            setState(() {
+              _isSelected = false;
+            });
+          },
         ),
       )
     ]);
